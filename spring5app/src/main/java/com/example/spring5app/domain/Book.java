@@ -7,24 +7,39 @@ import java.util.Set;
 @Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name, isbn;
 
-    @ManyToMany
+    @ManyToMany()
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
-
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
 
     @ManyToOne
     private Publisher publisher;
+
+    public Book() {
+
+    }
 
     public Book(String name, String isbn) {
         this.name = name;
         this.isbn = isbn;
     }
 
-    // NEED TO STRING METHOD
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", authors=" + authors +
+                ", publisher=" + publisher +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

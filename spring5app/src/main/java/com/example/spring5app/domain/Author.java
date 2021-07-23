@@ -16,7 +16,7 @@ public class Author {
 
     private String firstName, lastName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
     public Author() {
@@ -28,7 +28,15 @@ public class Author {
         this.lastName = lastName;
     }
 
-    // NEED TO STRING METHOD
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,10 +1,10 @@
 package com.example.spring5app.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
 public class Publisher {
 
     @Id
@@ -13,10 +13,37 @@ public class Publisher {
     private String addressLine1, city, state, zipcode;
 
     @OneToMany
-    private Book book;
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
 
     public Publisher() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Publisher publisher = (Publisher) o;
+
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     public Long getId() {
@@ -57,5 +84,13 @@ public class Publisher {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }
