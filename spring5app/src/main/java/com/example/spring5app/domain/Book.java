@@ -37,7 +37,6 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", authors=" + authors +
-                ", publisher=" + publisher +
                 '}';
     }
 
@@ -86,5 +85,13 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
