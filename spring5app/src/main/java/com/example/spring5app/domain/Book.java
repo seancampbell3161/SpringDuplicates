@@ -11,7 +11,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name, isbn;
+    private String title, isbn;
 
     @ManyToMany()
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -25,8 +25,8 @@ public class Book {
 
     }
 
-    public Book(String name, String isbn) {
-        this.name = name;
+    public Book(String title, String isbn) {
+        this.title = title;
         this.isbn = isbn;
     }
 
@@ -34,7 +34,7 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", authors=" + authors +
                 '}';
@@ -47,12 +47,12 @@ public class Book {
 
         Book book = (Book) o;
 
-        return name != null ? name.equals(book.name) : book.name == null;
+        return title != null ? title.equals(book.title) : book.title == null;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return title != null ? title.hashCode() : 0;
     }
 
     public Long getId() {
@@ -63,12 +63,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getIsbn() {
