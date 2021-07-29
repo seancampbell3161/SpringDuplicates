@@ -1,19 +1,19 @@
 package com.example.sfdiduplicate.controllers;
 
 import com.example.sfdiduplicate.services.GreetingService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ConstructorInjectedController {
+public class MyController {
 
     GreetingService greetingService;
 
-    public ConstructorInjectedController(@Qualifier("constructorInjectedService") GreetingService greetingService) {
+    public MyController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
-    public String getGreeting() {
+    public String sayHello() {
         return greetingService.sayGreeting();
     }
 }
